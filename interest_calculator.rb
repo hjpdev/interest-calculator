@@ -1,18 +1,14 @@
 
 def input_values
   puts "Enter principal. "
-    @principal = gets.chomp
-    @principal = @principal.to_f
+    @principal = gets.to_f
   puts "Enter rate. "
-    @rate = gets.chomp
-    @rate = @rate.to_f
+    @rate = gets.to_f
     @rate_plus_one = @rate + 1
   puts "Enter additional contribution each year. "
-    @contribution = gets.chomp
-    @contribution = @contribution.to_f
+    @contribution = gets.to_f
   puts "Enter years. "
-    @years = gets.chomp
-    @years = @years.to_f
+    @years = gets.to_f
   40.times { print "-" }
   puts
 end 
@@ -25,10 +21,20 @@ def calculate
 end
 
 def format_result(value)
-  foo = value.round(2).to_s.reverse
-  for i in 0..foo.length-1
-    if i == 6 || i == 10 || i == 14 || i == 18
-      foo.insert(i, ",")
+  dp = value.round(2).to_s.split(".")
+  if dp[1].length < 2
+    foo = value.round(2).to_s.reverse
+    for i in 0..foo.length
+      if i == 5 or i == 9 or i == 13 or i == 18
+        foo.insert(i, ",")
+      end
+    end
+  else
+    foo = value.round(2).to_s.reverse
+    for i in 0..foo.length
+      if i == 6 or i == 10 or i == 14 or i == 19
+        foo.insert(i, ",")
+      end
     end
   end
   foo.reverse
